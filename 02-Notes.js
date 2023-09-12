@@ -239,9 +239,19 @@ function actClase(){
     return result
 }
 console.log(actClase())
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*************************
+MODULOS NATIVOS EN NODEJS
+*************************
+
+- fs = Módulo para manejo de archivos
+- crypto = Permite hacer operacion de encriptación y cifrado para información sensible.
+- http = Permite crear un servidor básico bajo el protocolo http
+- path = permite el correcto manejo de rutas
+
+
 */
 
-
-
-
-// 2:11:13
