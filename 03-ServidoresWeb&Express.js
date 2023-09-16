@@ -107,6 +107,4 @@ Caracteristica de las APIs REST:
         para compartir su ubicación exacta a terceros.
     
 
-    2:39:44
-
 */
