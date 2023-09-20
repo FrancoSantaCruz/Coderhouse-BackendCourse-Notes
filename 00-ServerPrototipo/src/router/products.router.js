@@ -2,6 +2,8 @@ import { Router } from 'express'
 // Importo una instancia de ProductManager. No la clase.
 import { productsManager } from '../ProductManager.js'
 
+import { authMiddleware } from '../middlewares/auth.middleware.js'
+
 //Al importar solamente Router de express, inicializamos las funcionalidades para el CRUD.
 const router = Router()
 
@@ -34,7 +36,7 @@ router.get('/:pid', async(req,res) => {
 
 })
 
-router.post('/', async (req,res) => {
+router.post('/', authMiddleware, async (req,res) => {
 
     // Buscamos validar la existencia de los campos obligatorios enviados por body.
     // Lo hacemos preferentemente en la ruta previo a la ejecución del método asincrónico
