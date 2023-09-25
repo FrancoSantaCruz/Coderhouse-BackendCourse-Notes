@@ -61,5 +61,20 @@ Estructura:
         res.status(500).send('Something broke!');
     });
 
-    1:25:55
+**** MULTER
+
+Multer es un middleware de terceros pensado para poder realizar carga de archivos
+al servidor. 
+
+En ocasiones el cliente necesitará subir una imagen, un video o un archivo,
+según sea nuestra aplicación, ello nos lleva a configurar nuestro servidor 
+para soportar estos archivos y poder alamacenarlos en donde nosotros le indiquemos.
+
+Multer agrega al parámetro request del router una nueva propiedad llamada file
+de la cual podremos obtener otras propiedades tales como: 
+    - originalname: nombre originial del archivo al ser subido.
+    - destination: A donde se guardó. 
+    - filename: el nombre que se le fué otorgado.
+    - path: lo mismo que destination pero con el filename agregado (destination+filename)
+    - size: tamaño o peso del archivo. 
 */

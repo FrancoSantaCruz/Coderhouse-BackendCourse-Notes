@@ -1,9 +1,9 @@
-import express from 'express';
-import productsRouter from './router/products.router.js'
-import { __dirname } from './utils.js'; // Importamos de utils la creacion de __dirname
 // Debo especificar en mi package.json que voy a trabajar con ES Module ya que nodejs trabaja
 // con import de forma nativa, y nosotros queremos trabajar con ES Module. 
 // "type": "module",
+import express from 'express';
+import productsRouter from './router/products.router.js'
+import { __dirname } from './utils.js'; // Importamos de utils la creacion de __dirname
 
 // Activo el módulo express para poder hacer uso de ella e iniciar el servidor.
 const app = express();
@@ -71,9 +71,9 @@ app.get('/users/:id', (req, res) => {
 
 // Asignar un puerto al que el servidor debe escuchar para las peticiones.
 app.listen(8080, () => {
-    console.log("Listening server on port 8080.");
+    console.log("Listening server on port 8080. \nhttp://localhost:8080/ ");
 });
 
 
 // Routes
-app.use('/products',productsRouter);
+app.use('/api/products',productsRouter);

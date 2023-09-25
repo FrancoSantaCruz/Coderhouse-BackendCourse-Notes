@@ -3,6 +3,7 @@ import { Router } from 'express'
 import { productsManager } from '../ProductManager.js'
 
 import { authMiddleware } from '../middlewares/auth.middleware.js'
+import { upload } from '../middlewares/multer.middleware.js'
 
 //Al importar solamente Router de express, inicializamos las funcionalidades para el CRUD.
 const router = Router()
@@ -36,7 +37,7 @@ router.get('/:pid', async(req,res) => {
 
 })
 
-router.post('/', authMiddleware, async (req,res) => {
+router.post('/', upload.array('avatar', 6), async (req,res) => {
 
     // Buscamos validar la existencia de los campos obligatorios enviados por body.
     // Lo hacemos preferentemente en la ruta previo a la ejecución del método asincrónico
