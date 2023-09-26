@@ -4,6 +4,8 @@
 import express from 'express';
 import productsRouter from './router/products.router.js'
 import { __dirname } from './utils.js'; // Importamos de utils la creacion de __dirname
+import handlebars from 'express-handlebars' //Importamos handlebars para poder hacer ocupación de la función engine() en el seteo del motor.
+
 
 // Activo el módulo express para poder hacer uso de ella e iniciar el servidor.
 const app = express();
@@ -16,6 +18,11 @@ app.use(express.urlencoded({extended:true}))
 // Importamos .static para ocupar el middleware que nos ayuda a dirigir donde se encuentran nuestros archivos estáticos. 
 // .static('ubicacion de public') -> La ubicación de public lo hacemos con Path Absolutos.
 app.use(express.static(__dirname+'/public'))
+
+// handlebars
+app.engine('handlebars', handlebars.engine()); //Creamos la existencia del motor de plantilla al no ser reconocido automáticamente al instalarlo.
+app.set('view engine', 'handlebars'); //Seteamos con express cual es el motor de plantilla que vamos a estar ocupando
+app.set('views', __dirname+'/views'); //Seteamos la ruta donde haremos los templates con el motor.
 
 /*SIN PRODUCTMANAGER
 const users = [

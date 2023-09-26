@@ -77,4 +77,28 @@ de la cual podremos obtener otras propiedades tales como:
     - filename: el nombre que se le fué otorgado.
     - path: lo mismo que destination pero con el filename agregado (destination+filename)
     - size: tamaño o peso del archivo. 
+
+
+**** Motores de Plantillas 
+
+Uno de los primeros problemas del desarrollo web: dinamismo. 
+Existen motores de plantillas tales como: Handlebars, ejs, Pugjs. 
+
+En el cursado vamos a estar ocupando express-handlebars
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 */
