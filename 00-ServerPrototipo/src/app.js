@@ -3,6 +3,7 @@
 // "type": "module",
 import express from 'express';
 import productsRouter from './router/products.router.js'
+import viewsRouter from './router/views.router.js'
 import { __dirname } from './utils.js'; // Importamos de utils la creacion de __dirname
 import handlebars from 'express-handlebars' //Importamos handlebars para poder hacer ocupación de la función engine() en el seteo del motor.
 
@@ -83,4 +84,6 @@ app.listen(8080, () => {
 
 
 // Routes
+
+app.use('/api/', viewsRouter)
 app.use('/api/products',productsRouter);
