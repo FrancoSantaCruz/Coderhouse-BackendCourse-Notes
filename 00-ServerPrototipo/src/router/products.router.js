@@ -2,8 +2,8 @@ import { Router } from 'express'
 // Importo una instancia de ProductManager. No la clase.
 import { productsManager } from '../ProductManager.js'
 
-import { authMiddleware } from '../middlewares/auth.middleware.js'
-import { upload } from '../middlewares/multer.middleware.js'
+// import { authMiddleware } from '../middlewares/auth.middleware.js'
+// import { upload } from '../middlewares/multer.middleware.js'
 
 //Al importar solamente Router de express, inicializamos las funcionalidades para el CRUD.
 const router = Router()
@@ -37,8 +37,7 @@ router.get('/:pid', async(req,res) => {
 
 })
 
-router.post('/', upload.array('avatar', 6), async (req,res) => {
-
+router.post('/', async (req,res) => {
     // Buscamos validar la existencia de los campos obligatorios enviados por body.
     // Lo hacemos preferentemente en la ruta previo a la ejecución del método asincrónico
     // al ser totalmente innecesario ejecutar tanta lógica si podemos validar previamente.
@@ -48,7 +47,8 @@ router.post('/', upload.array('avatar', 6), async (req,res) => {
     }
     try {
         const newProduct = await productsManager.addProduct(req.body)
-        res.status(200).json({message:'Product added', product: newProduct})
+        // res.status(200).json({message:'Product added', product: newProduct})
+        res.redirect('/api/products/'+newProduct.id)
     } catch (error) {
         res.status(500).json({message: error})
     }

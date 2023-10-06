@@ -1,0 +1,8 @@
+{{#if prod}}
+<h1>{{prod.title}}</h1>
+<h2>{{prod.description}}</h2>
+<p>${{prod.price}} | stock:{{prod.stock}}</p>
+<p>{{prod.code}}</p>
+{{else}}
+<h1>Product doesn't exists</h1>
+{{/if}}

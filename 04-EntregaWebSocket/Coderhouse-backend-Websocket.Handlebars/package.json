@@ -1,10 +1,10 @@
 {
-  "name": "03-serverexpresstest",
+  "name": "coderhouse-backend-websocket.handlebars",
   "version": "1.0.0",
+  "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/app.js"
   },
   "keywords": [],
@@ -13,7 +13,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
+    "nodemon": "^3.0.1",
     "socket.io": "^4.7.2"
-  },
-  "description": ""
+  }
 }
