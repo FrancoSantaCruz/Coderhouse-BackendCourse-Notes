@@ -22,6 +22,22 @@ const httpServer = app.listen(PORT, () =>{
 
 // 
 const socketServer = new Server(httpServer)
-// routes
 
+const names = []
+socketServer.on("connection", (socket) => {
+    console.log(`Cliente conectado: ${socket.id}`)
+    socket.on("disconnect", () => {
+        console.log(`Cliente desconectado: ${socket.id}`)
+    })
+
+    socket.on("firstEvent", (info) => {
+        names.push(info)
+        // console.log(`Array: ${names}`)
+        // socket.emit('secondEvent', names)
+        socketServer.emit('secondEvent', names)
+        // socket.broadcast.emit('secondEvent', names)
+    })
+})
+
+// routes
 app.use('/', viewsRouter)

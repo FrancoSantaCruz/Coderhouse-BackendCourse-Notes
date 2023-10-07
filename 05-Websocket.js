@@ -71,6 +71,71 @@ socket.io tiene 2 eventos predefinidos: connection - disconnect
 
 Necesito que socket.io esté pendiente (on) a este evento (connection), y cuando pase, que hagas lo siguiente:
 socketServer.on("connection", (socket) => {
-    console.log("El usuario está conectado")
+    console.log(` El cliente está conectado ${socket.id}`)
 })
+
+Así como tengo un evento cuando un usuario se conecta, también lo tengo para cuando se desconecta.
+socketServer.on("connection", (socket) => {
+    console.log(` El cliente ${socket.id} está conectado`)
+    socket.on("disconnect", () => {
+        console.log(` El cliente ${socket.id} se desconectó `)
+    })
+})
+
+Con el método .emit() emitimos información bajo un nombre asignado (evento)
+<socket Server|Client>.emit("<nombre_del_evento>", informacion);
+
+Y así como emitimos la información, desde el otro lado debemos estar preparados 
+para escucharlas:
+<socket Server|Client>.on("<nombre_del_evento>", (informacion que recibe) => {
+    console.log(`Info sent: ${info}`)
+})
+
+Por ejemplo en el ejemplo hecho por el profesor:
+1) Creamos un formulario básico y obtenemos sus valores mediante getElementById. 
+2) Del lado del cliente:    Creamos un evento submit para obtener el value del input del formulario
+                            y creamos el primer evento emitiendo ese value con socketClient.
+3) Del lado del servidor:   Debemos escuchar esa información enviada por el cliente, por lo tanto 
+                            usamos socketServer.on() para escuchar el evento emitido por el cliente.
+                            Y almacenamos en el lado del servidor todos los values que están siendo emitidos
+                            desde el lado del cliente. Para luego poder volver a emitir todos los values 
+                            obtenidos hasta el momento. 
+4) Del lado del cliente:    Recibe esa informacion nueva escuchando el nuevo evento creado y hace un console.log
+
+
+* Tener en cuenta cuando queremos hablar simplemente con el usuario sobre el mismo, o queremos informar sobre algo general. 
+Ya que cuando estamos del lado del servidor y trabajamos bajo el evento de connection de un usuario, lo normal es hablar 
+con el socket pasado por parámetro del callback. Pero eso simplemente comunica a ese usuario en el momento que él interactua. 
+Pero si otra persona interactua, ese usuario no se actualiza con los nuevos datos. 
+Por ello mismo en el punto número 3 del ejemplo del profesor, emitimos el nuevo evento (secondEvent) mediante socketServer
+y no sobre el parámetro socket. 
+Así usuario1 recibe la información cuando interactua, y si un usuario2 interactua con la web también
+usuario1 recibe las actualizaciones generadas por usuario2.
+
+Tenemos la opción también de los métodos: 
+socket.broadcast.emit('event', info)
+Lo que nos permite emitir la información a todos los usuarios excepto al usuario que está generando este emit, es decir, al socket ejecutando.
+Ej. de uso: Cuando un usuario se conecta a un chat o ingresa a un grupo, queremos que les avise a todos los usuarios del grupo o chat 
+            excepto a la persona que ingresó. 
+
+En conclusión: 
+
+con socket.emit('event', info) -> Solamente emitimos al usuario implicado. 
+con socketServer.emit('event', info) -> Emitimos a todos los usuarios. 
+con socket.broadcast.emit('event', info) -> Emitimos a todos menos al usuario implicado.
+
+GLITCH DEPLOY: 
+
+package.json: 
+    El script "start" debe ejecutar con node el proyecto. 
+    Agregar atributo engines con el valor node: 16.x
+    "scripts": {
+        "start": "node src/app.js"
+    },
+    "engines": {
+        "node": "16.x"
+    }
+
+Luego hacemos el push al repo e importamos a glitch el repositorio.
+
 */
