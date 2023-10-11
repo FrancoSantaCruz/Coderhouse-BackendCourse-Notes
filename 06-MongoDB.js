@@ -93,6 +93,52 @@ MongoDB es:
         una estructura casi idéntica a la de un objeto.
 
     SQL Tabla -> Coleccion MongoDB
-    
+---------
+    MongoDB shell: 
 
+    mongo> show dbs 
+        Muestra las bases de datos locales creadas actualmente. 
+        (Por default vienen creadas las db admin, config y local)
+
+    mongo> use [nombre] 
+        Sirve para posicionarnos en la DB que querramos trabajar
+        y en caso de no existir el nombre que pusimos, creará una con ese nombre.
+
+    [db_nombre]> db.createColletion("[nombre_colec]")
+        Crear una colección dentro de la DB. 
+
+    [db_nombre]> db.[nombre_colec].drop()
+        Eliminar una colección en la DB.
+
+    [db_nombre]> show collections
+        Muestra todas las colecciones que hay dentro de la DB.
+
+    [db_nombre]> db.[nombre_colec].renameCollection("[new_name]")
+        Renombrar una collección.
+
+    [db_nombre]> db.[nombre_colec].estimatedDocumentCount()
+        Devuelve cuantos documentos hay en esa collección. (int)
+    
+    Comandos básicos CRUD: 
+        db.collection.insertOne(doc)
+            Agrega un nuevo documento a la coleccción seleccionada.
+
+        db.collection.insertMany(docs)
+            Agrega múltiples documentos a la colección seleccionada
+            (dado un arreglo de documentos)
+
+        db.collection.findOne(opt)
+            Busca un elemento que cumpla con los criterios de búsqueda (opt)
+            devuelve el primer documento que cumpla con dicho criterio.
+
+        db.collection.find(opt)
+            Devuelve todos los documentos que cumplan con dicho criterio.
+
+        db.collection.find(opt).pretty()
+            Añadido para hacer más presentables los resultados de un find()
+
+
+test->[{first_name:"Franco", last_name:"Santa Cruz", edad: 24},{first_name:"Agustin", last_name:"Morante"},{first_name:"Martin", last_name:"Andes", edad: 38 },{first_name:"Jose", edad: 27 },{first_name:"Martina", last_name:"Piedrabuena", ciudad: "Resistencia" },{first_name:"Lilian", last_name:"Aguero", edad: 64 },{first_name:"Barbara", last_name:"SCz"}]
+1:34:17
 */
+
