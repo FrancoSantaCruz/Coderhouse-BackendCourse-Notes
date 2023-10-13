@@ -138,7 +138,34 @@ MongoDB es:
             Añadido para hacer más presentables los resultados de un find()
 
 
+    Filtros (.find()):
+        Los filtros se agregan dentro del os elementos de criterio (opt)
+        con ayuda del símbolo $, además podemos agregar más de un filtro
+        para asegurarnos que el documento se ajuste a criterios muy 
+        específicos. 
+        db.coll.find({key:{$operator:val}})
+
+        $and: Realiza operación AND -> {$and: [ {}, {} ]}
+        $or: Realiza operación OR -> {$or: [ {}, {} ]}
+        $lt: Coincide con valores menores que un valor especificado -> {clave:{$lt:valor}}
+        $lte: Coinicide con valores menores o iguales a un valor especificado
+        $gt: Coincide con valores mayores a un valor especificado
+        $gte: Coincide cocn valores mayores o iguales a un valor especificado
+        $ne: Coincide con valores que no son iguales a un valor especificado.
+        $eq: Selecciona los documentos que son iguales a un valor especificado.
+        $exists: Selecciona los documentos según la existencia de un campo
+        $in: Selecciona los documentos especificados en un array -> {key:{ $in:[array of values] }}
+        $nin: Coincide con ninguno de los valores especificados en un array.
+        $size: Coincide con el número de elementos especificados.
+        $all: Coincide con todos los valores definidos dentro de un array.
+        $elemMatch: Coincide con algún valor definido dentro del query. 
+
+
+
+
 test->[{first_name:"Franco", last_name:"Santa Cruz", edad: 24},{first_name:"Agustin", last_name:"Morante"},{first_name:"Martin", last_name:"Andes", edad: 38 },{first_name:"Jose", edad: 27 },{first_name:"Martina", last_name:"Piedrabuena", ciudad: "Resistencia" },{first_name:"Lilian", last_name:"Aguero", edad: 64 },{first_name:"Barbara", last_name:"SCz"}]
-1:34:17
+1:52:00
+
+
 */
 
