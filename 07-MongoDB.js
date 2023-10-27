@@ -120,6 +120,7 @@ MongoDB es:
         Devuelve cuantos documentos hay en esa collección. (int)
     
     Comandos básicos CRUD: 
+    CREATE:
         db.collection.insertOne(doc)
             Agrega un nuevo documento a la coleccción seleccionada.
 
@@ -127,6 +128,7 @@ MongoDB es:
             Agrega múltiples documentos a la colección seleccionada
             (dado un arreglo de documentos)
 
+    READ:
         db.collection.findOne(opt)
             Busca un elemento que cumpla con los criterios de búsqueda (opt)
             devuelve el primer documento que cumpla con dicho criterio.
@@ -160,12 +162,56 @@ MongoDB es:
         $all: Coincide con todos los valores definidos dentro de un array.
         $elemMatch: Coincide con algún valor definido dentro del query. 
 
+        Proyecciones: 
+            Cuando no necesitamos toda la información de un documento y queremos
+            traer solo ciertas propiedades utilizamos proyecciones. 
+            db.[collection].find({}, {name:1})
+            Siempre se pone la proyección como segundo parámetro del find. 
+            Como el ID trae por default si o si, podemos poner: 
+            db.[collection].find({}, {name:1,_id:0})
+            para que no lo traiga.
 
+        Sort: 
+            Sirve para poder hacer un ordenamiento de la información. 
+            El ordenamiento se define con 1 o -1 para hacer el ordenamiento
+            ASC o DESC respetivamente. 
+            Sintaxis: db.[collection].find().sort({val_A:1, val_B:-1})
+            La razón por la cual podemos agregar múltiples valores de ordenamiento
+            es en caso de que dos documentos tengan el mismo valor, podamos 
+            ordenarlos bajo otro criterio.
 
+        Skip y Limit:
+            *Skip: Omite el número de documentos indicados: podemos usarlo 
+            cuando hagamos paginaciones, cuando necesitemos ignorar un valor
+            que sabemos que es innecesario, etc. 
+                find().skip(offset)
 
-test->[{first_name:"Franco", last_name:"Santa Cruz", edad: 24},{first_name:"Agustin", last_name:"Morante"},{first_name:"Martin", last_name:"Andes", edad: 38 },{first_name:"Jose", edad: 27 },{first_name:"Martina", last_name:"Piedrabuena", ciudad: "Resistencia" },{first_name:"Lilian", last_name:"Aguero", edad: 64 },{first_name:"Barbara", last_name:"SCz"}]
-1:52:00
+            *Limit: Limita el número de documentos devueltos. De manera que
+            podamos hacer diferentes niveles de paginación (Tu página puede
+            devolver 5 elementos por página, o bien 100, depende de cada uno).
+                find().limit(num)
 
+    UPDATE:
+        db.[collection].updateOne(query, update, option)
+            *query: sirve para filtrar qué elementos actualizar 
+            (usa los filtros iguales al find)
+            *update: Apartado para indicar qué actualizar de los documentos
+            que cumplen con el filtro. Update tiene sus propios operadores
+            como $set, $unset, $inc, $rename, $mul, $min, $max
+                -({find_object}, {$set: {year:2006, name: "Franco"} })
+                -({find_object}, {$unset: {year: 1} })
+                -({find_object}, {$rename: {year:"date"} })
+                -({find_object}, {$inc: {year}:5 })
+                -({find_object}, {$mul: {price: NumberDecimal("1.25"), qty:2} })
+                -({find_object}, {$min: {imdb:5} })
+                -({find_object}, {$max: {imdb:8} })
+                -({find_object}, {$currentDate: {lastModified: true} })
+                -({find_object}, {$currentDate: {lastModified: {$type: "timestamp"}} })
+            *option: Opciones a tomar en cuenta para la actualización
+            (como upsert, que inserta el valor en caso de que el documento
+            a actualizar ni siquiera exista).
 
+        
+Ej DB -> [{first_name:"Franco", last_name:"Santa Cruz", edad: 24},{first_name:"Agustin", last_name:"Morante"},{first_name:"Martin", last_name:"Andes", edad: 38 },{first_name:"Jose", edad: 27 },{first_name:"Martina", last_name:"Piedrabuena", ciudad: "Resistencia" },{first_name:"Lilian", last_name:"Aguero", edad: 64 },{first_name:"Barbara", last_name:"SCz"}]
 */
 
