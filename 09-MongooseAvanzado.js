@@ -145,3 +145,47 @@ ej.
 
 
 /********************************PAGINACIÓN********************************/
+
+`
+    Paginación como control de resultados. 
+
+Aprender a pensar en páginas nos permitirá segmentar los resultados en pequeños trozos de información
+brindándonos al final una referencia de en qué página estamos, cuál es la página anterior,  y cuál la siguiente. 
+
+npm i mongoose-paginate-v2
+
+Lo estaremos inicializando en el schema (model).
+Y utilizando en el manager.
+
+EJ.
+[test.model.js]
+
+        import mongoosePaginate from 'mongoose-paginate-v2';
+
+        const testSchema = new mongoose.Schema({
+            ...
+        })
+
+        testSchema.plugin(mongoosePaginate);
+
+[testManager.js]
+
+        asnc findAll(opt){
+            const result = await testModel.paginate({}, opt);
+            const info = {
+                count: result.totalDocs,
+                pages: result.totalPages,
+                prev: result.hasPrevPage ?  \`http://localhost:8080/api/test?page=\${result.prevPage} : null\`
+                next: result.hasnextPage ?  \`http://localhost:8080/api/test?page=\${result.nextPage} : null\`
+            }
+            return { info, results:result.docs }
+        }
+
+[test.router.js]
+
+        router.get('/', async (req, res) => {
+            const response = await testManager.findAll(req.query);
+
+            res.json({response})
+        })
+`
