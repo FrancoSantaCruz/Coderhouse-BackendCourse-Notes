@@ -97,6 +97,75 @@ Signed Cookies
     * Si tratamos de acceder a una cookie firmada que fue alterada por alguna razón
     al querer acceder a ella solo se devolverá un false.
 
-    1:58:45
+`
+
+/**************************************** SESSIONS ****************************************/`
+
+    El sistema de sesiones permitirá que el servidor tenga almacenada información referente
+    al cliente, con el fin de que éste pueda mantenerse identificado al momento de hacer las peticiones. 
+    Una vez que el cliente pase por un proceso de login, podemos procesar esa información para mantener
+    reconocido al cliente y poder brondarle respuestas particulares acorde con su rol en la página.
+
+    FLujo:
+
+    Hacemos un login        A dicha identidad de usuario              Desde el backend 
+     (el usuario se    -->    se le asigna un sessionID      -->     se guarda en cookies
+       identifica)                                                    dicha sessionID
+
+
+Session como módulo de node
+    Session permite conseguir este almacenamiento de informacióon de cliente. Este podremos utilizarlo
+    a través del elemento req.session .
+    Algunas características de session son: 
+        - La información que se quiera guardar en session se almacena del lado del servidor.
+        - Del lado del cliente, se crea un identificador único para poder acceder a esa información
+        desde el navegador.
+        - Los datos almacenados en session se borran al cerrar la ventana del navegador. 
+        - Se utiliza principalmente para guardar los datos de usuario al iniciar sesión.
+
+
+Instalar
+    > npm i express-session
+
+
+En síntesis
+    Tendremos una colección llamada Sessions donde al momento de registrar un usuario
+    guardaremos el email en dicha colección, por lo que se le generará un ID. 
+    Ese id va a ser nuestro sessiónID que luego será guardado en las cookies del usuario para comparar
+    con el de la base de datos. 
+    Session -> Back
+    Cookie -> Navegador
+
+
+SESSION -> FILE SYSTEM
+(Utilizando File Storage)
+    Partiremos de hacer la instalación habitual con npm con el comando: 
+    > npm install session-file-store
+
+    Y luego incializamos con los tres argumentos principales: path, ttl y retires.
+
+    import FileStore from 'session-file-store'; 
+    import session from 'express-session';
+
+    const fileStorage = FileStore(session);
+    app.use(session({
+        store: new fileStorage({path:'./sessions', ttl:100, retries:0}),
+        secret:"asdasd",
+        ...
+    }))
+
+
+SESSION -> MongoDB
+    Session puede trabajar de la mano con MongoDB y MongoAtlas para poder guardar una sesión en una 
+    base de datos, esto permitirá que las sesiones tengan una gestión más limpia y además de poder
+    contar con autoeliminación de sesiones expiradas.
+
+    Partiremos de hacer la instalación habitual con npm con el comando:
+    > npm install connect-mongo
+
+    *IMPORTANTE: una cosa es tener express-session que siempre necesitamos para generar las sessions 
+    y otra cosa es tener la dependencia externa que va a dirigir como guardar las sessions;
+    ya sea session-file-store o connect-mongo. 
+
 
 `
