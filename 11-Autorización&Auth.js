@@ -107,6 +107,60 @@ para mantener un código limpio, estructurado y altamente configurable.
 Podemos utilizar y configurar múltiples estrategias de autenticación y
 autorización con passport. En esta ocasión crearemos una estrategia local.
 
+Pasos para su utilización: 
+    1) Instalar passport > npm i passport
+    2) Crear el middleware passport.js con las funciones de serializeUser
+    y deserializeuser configurandolo respecto a nuestro proyecto. 
+    3) Luego inicializarlo en nuestro app.js con las siguientes líneas:
+            - import passport from 'passport'
+            - app.use(passport.initialize());
+            - app.use(passport.session());
+    4) Importar el middleware a app.js también: 
+        - import './passport.js'
+    5) Luego instalamos el passport local: 
+        - npm i passport-local
+    6) Importamos en nuestro middleware todas las estrategias: 
+        - import { Strategy } from 'passport-local';
+    7) Creamos las estrategias en las rutas que queremos aplicarlas.
+    **Revisar el archivo de passport para más información**
+    8) Luego modificamos las rutas de signup y login creadas y aplicamos
+    passport en ellas. 
+        - router.post('/signup', passport.authenticate('signup'), async (req,res) => {
+            res.redirect('/home')
+          })
+    9) Passport nos permite redireccionar en caso de un login exitoso
+    como también incorrecto, para ello debemos modificar la ruta post
+    en donde se hace la autenticación:
+        - router.post('/signup', passport.authenticate('signup', { successRedirect: '/home', failureRedirect: '/error'}))
+        *Para ello igualmente creamos una vista del error. 
+    
 
 
+
+*/
+`                              CONCLUSIÓN
+Si quiero hacer un login/signup en donde solamente quiero requerir el email
+y el password y con ello verificar, no es necesario ocupar passport, se 
+puede lograr y es recomendable aplicar bcrypt simplemente. 
+Ahora bien, lo realmente recomendable para una web segura es permitir que
+los usuarios puedan ingresar mediante 3eros y para ello si es mejor 
+unificar todo con passport. Desde el login/signup manual, hasta la 
+utilización de una estrategia específica. 
+`
+
+`                          PASSPORT w/ Github                           `/*
+
+EMPEZAMOS EL EJEMPLO PARTIENDO DEL ANTERIOR HECHO CON PASSPORT PERO CON
+LA DIFERENCIA DE QUE INSTALAMOS "passport-github". *passport-github está 
+deprecated*
+    - npm install passport-github2
+
+Pasos para su aplicación: 
+    1) Importamos la estrategia de la librería recién instalada en el
+    middleware passport.js
+        - import { Strategy as GithubStrategy } from 'passport-github2'
+
+
+
+2:45:30
 */
