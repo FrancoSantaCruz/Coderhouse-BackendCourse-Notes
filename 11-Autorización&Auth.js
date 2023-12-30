@@ -1,7 +1,7 @@
 `                             AUTENTICACÍON                            `/*>
 
 Para que un cliente pueda autenticarse, debe existir un registro previo
-almacenado en algún lado. El cliente envía un identifcador (como un mail)
+almacenado en algún lado. El cliente envía un identificador (como un mail)
 y el servidor lo buscará en su base de datos para saber si sí existe
 previamente. En caso de que sí, podrá responder con sus credenciales
 completas (no sensibles).
@@ -33,6 +33,7 @@ Métodos de autenticación:
     acceda a los recursos del sistema que necesita. 
 
 */
+ 
 
 
 `                             AUTORIZACÍON                              `/*
@@ -42,7 +43,7 @@ de las credenciales que tienes, se te permite acceder a un recurso o no.
 Es decir, que autorizar no hace referencia a que el servidor no sepa quién
 eres.
 
-Debetmos tener conjuntos de servicios jerarquizados para: 
+Debemos tener conjuntos de servicios jerarquizados para: 
     - Usuarios comunes.
     - Usuarios premium (si trabajamos con un sistema de jerarquías).
     - Administrador.
@@ -161,6 +162,6 @@ Pasos para su aplicación:
         - import { Strategy as GithubStrategy } from 'passport-github2'
 
 
-
-2:45:30
+12
+00:36:00
 */
