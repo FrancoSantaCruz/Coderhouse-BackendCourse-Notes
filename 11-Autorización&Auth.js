@@ -162,6 +162,4 @@ Pasos para su aplicación:
         - import { Strategy as GithubStrategy } from 'passport-github2'
 
 
-12
-00:36:00
 */
