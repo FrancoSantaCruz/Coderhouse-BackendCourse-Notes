@@ -88,6 +88,4 @@ Proceso general:
     padre, donde el contenido del mensaje será el resultado.
     - Ese resultado se envía al cliente.
 
-
-2:43:00
 */
