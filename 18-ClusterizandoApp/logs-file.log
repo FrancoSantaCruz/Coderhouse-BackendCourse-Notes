@@ -1,0 +1,25 @@
+{
+  message: 'Error',
+  level: 'error',
+  timestamp: '2024-02-14T05:47:29.441Z'
+}
+{
+  message: 'Warn',
+  level: 'warn',
+  timestamp: '2024-02-14T05:47:29.442Z'
+}
+{
+  message: 'Info',
+  level: 'info',
+  timestamp: '2024-02-14T05:47:29.443Z'
+}
+{
+  message: 'danger',
+  level: 'danger',
+  timestamp: '2024-02-14T05:54:34.706Z'
+}
+{
+  message: 'warning',
+  level: 'warning',
+  timestamp: '2024-02-14T05:54:34.708Z'
+}

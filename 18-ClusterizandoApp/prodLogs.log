@@ -1,0 +1,10 @@
+{
+  message: 'danger',
+  level: 'danger',
+  timestamp: '2024-02-14T06:10:52.489Z'
+}
+{
+  message: 'warning',
+  level: 'warning',
+  timestamp: '2024-02-14T06:10:52.492Z'
+}
