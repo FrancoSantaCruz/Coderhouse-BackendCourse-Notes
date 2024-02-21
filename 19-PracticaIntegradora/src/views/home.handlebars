@@ -1,0 +1,29 @@
+<div style="display: flex; justify-content: center;">
+    <div style="display: flex; flex-direction: column; justify-self: center; align-items:center; width: 50%">
+        
+        <h2>Signup</h2>
+        <form action="/api/auth/signup" method="post"
+            style="display: flex; flex-direction: column; justify-content: center; align-items:center;">
+            first name: <input type="text" name="first_name" id="first_name">
+            last name: <input type="text" name="last_name" id="last_name">
+            email: <input type="text" name="email" id="email">
+            password: <input type="password" name="password" id="password">
+            <button type="submit">Signup</button>
+        </form>
+        
+        <h2>Login</h2>
+        <form action="/api/auth/login" method="post"
+            style="display: flex; flex-direction: column; justify-content: center; align-items:center;">
+            email: <input type="text" name="email" id="email">
+            password: <input type="password" name="password" id="password">
+            <button type="submit">Login</button>
+        </form>
+        
+        <h2>Logout</h2>
+        <form action="/api/auth/logout" method="post"
+            style="display: flex; flex-direction: column; justify-content: center; align-items:center;">
+            <button type="submit">Logout</button>
+        </form>
+
+    </div>
+</div>
